@@ -23,11 +23,19 @@ export const SearchField = ({
   );
   console.log('🚀 ~ file: index.tsx:23 ~ data:', data);
 
-  const handleSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault();
+  const handleSubmit2 = async (e: SyntheticEvent) => {
     setLoading(true);
-    data ? setPokemonList([data]) : setError(true);
+    e.preventDefault();
     setLoading(false);
+    data ? setPokemonList([data]) : setError(true);
+    setInputValue('');
+  };
+
+  const handleSubmit = async (e: SyntheticEvent) => {
+    setLoading(true);
+    e.preventDefault();
+    setLoading(false);
+    data ? setPokemonList([data]) : setError(true);
     setInputValue('');
   };
 
