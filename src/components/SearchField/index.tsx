@@ -17,8 +17,9 @@ export const SearchField = ({
   setLoading
 }: SearchFieldProps) => {
   const [inputValue, setInputValue] = useState('');
-  const { data } = useQuery(['pokemons', inputValue.toLocaleLowerCase()], () =>
-    fetchPokemon(inputValue.toLowerCase())
+  const { data, error, isError, refetch } = useQuery(
+    ['pokemons', inputValue.toLocaleLowerCase()],
+    () => fetchPokemon(inputValue.toLowerCase())
   );
   console.log('🚀 ~ file: index.tsx:23 ~ data:', data);
 
@@ -32,28 +33,28 @@ export const SearchField = ({
 
   return (
     <>
-    <C.Container onSubmit={handleSubmit}>
-      <C.InputText
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="buscar pokémon"
-        required
-      />
-      <C.SearchButton>
-        <SearchIcon />
-      </C.SearchButton>
-    </C.Container>
-     <C.Container onSubmit={handleSubmit}>
-     <C.InputText
-       value={inputValue}
-       onChange={(e) => setInputValue(e.target.value)}
-       placeholder="buscar pokémon"
-       required
-     />
-     <C.SearchButton>
-       <SearchIcon />
-     </C.SearchButton>
-   </C.Container>
+      <C.Container onSubmit={handleSubmit}>
+        <C.InputText
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="buscar pokémon"
+          required
+        />
+        <C.SearchButton>
+          <SearchIcon />
+        </C.SearchButton>
+      </C.Container>
+      <C.Container onSubmit={handleSubmit}>
+        <C.InputText
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="buscar pokémon"
+          required
+        />
+        <C.SearchButton>
+          <SearchIcon />
+        </C.SearchButton>
+      </C.Container>
     </>
   );
 };
