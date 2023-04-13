@@ -20,12 +20,14 @@ export const SearchField = ({
   const { data } = useQuery(['pokemons', inputValue.toLocaleLowerCase()], () =>
     fetchPokemon(inputValue.toLowerCase())
   );
-  console.log('🚀 ~ file: index.tsx:23 ~ data:', data);
+  // console.log('🚀 ~ file: index.tsx:23 ~ data:', data.results);
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
-    data ? setPokemonList([data]) : setError(true);
+    data
+      ? setPokemonList(data.results ? [data.results] : [data])
+      : setError(true);
     setLoading(false);
     setInputValue('');
   };
