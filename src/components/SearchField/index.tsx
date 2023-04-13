@@ -31,6 +31,7 @@ export const SearchField = ({
   };
 
   return (
+    <>
     <C.Container onSubmit={handleSubmit}>
       <C.InputText
         value={inputValue}
@@ -42,5 +43,17 @@ export const SearchField = ({
         <SearchIcon />
       </C.SearchButton>
     </C.Container>
+     <C.Container onSubmit={handleSubmit}>
+     <C.InputText
+       value={inputValue}
+       onChange={(e) => setInputValue(e.target.value)}
+       placeholder="buscar pokémon"
+       required
+     />
+     <C.SearchButton>
+       <SearchIcon />
+     </C.SearchButton>
+   </C.Container>
+    </>
   );
 };
