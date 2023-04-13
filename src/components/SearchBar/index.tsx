@@ -7,14 +7,15 @@ import { HomeButton } from '../HomeButton';
 export const SearchBar = ({
   setPokemonList,
   setLoading,
-  setPage,
+
   setShowPagination,
   disabledButton,
   setDisabledButton,
   searchBarRef,
   pokemonAmount,
   setPokemonAmount,
-  setError
+  setError,
+  pokemonList
 }: SearchBarProps) => {
   return (
     <div className="main-container" ref={searchBarRef}>
@@ -22,7 +23,6 @@ export const SearchBar = ({
         <HomeButton
           setPokemonList={setPokemonList}
           setLoading={setLoading}
-          setPage={setPage}
           setShowPagination={setShowPagination}
           disabledButton={disabledButton}
           setDisabledButton={setDisabledButton}
@@ -34,6 +34,7 @@ export const SearchBar = ({
           setLoading={setLoading}
           setShowPagination={setShowPagination}
           setDisabledButton={setDisabledButton}
+          pokemonList={pokemonList}
         />
         <SearchField
           setPokemonList={setPokemonList}

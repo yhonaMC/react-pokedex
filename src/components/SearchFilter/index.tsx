@@ -11,7 +11,8 @@ export const SearchFilter = ({
   setShowPagination,
   pokemonAmount,
   setPokemonList,
-  setDisabledButton
+  setDisabledButton,
+  pokemonList
 }: SearchFilterProps) => {
   const [selectedType, setSelectedType] = useState('');
 

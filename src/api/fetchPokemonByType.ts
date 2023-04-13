@@ -16,7 +16,7 @@ export const fetchPokemonByType = async (type: string, pokemonAmount = 9) => {
       return res;
     });
 
-  const pokemonList = Promise.all(promises);
+  const pokemonList = await Promise.all(promises);
 
   return pokemonList;
 };

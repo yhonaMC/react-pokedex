@@ -4,7 +4,8 @@ import { SearchBar } from './components/SearchBar';
 import { Pokedex } from './components/Pokedex';
 import { Pokemon } from './types/Pokemon';
 import { fetchPokemonList } from './api/fetchPokemonList';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
+import { useinifiniteScroll } from './hooks/useinifiniteScroll';
 
 const App = () => {
   const [modal, setModal] = useState(false);
@@ -12,13 +13,23 @@ const App = () => {
   const [pokemonAmount, setPokemonAmount] = useState(9);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+
   const [showPagination, setShowPagination] = useState(true);
   const [disabledButton, setDisabledButton] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
-  const { data, isLoading } = useQuery('pokemonList', () =>
-    fetchPokemonList(1)
-  );
+  const { handlePage, page, limit, offset } = useinifiniteScroll();
+
+  const { fetchNextPage, hasNextPage, isFetchingNextPage, data } =
+    useInfiniteQuery({
+      queryKey: 'listPokemon',
+      queryFn: () => fetchPokemonList(offset, limit),
+      getNextPageParam: (lastPage) => lastPage.next || null,
+      select: (val) => {
+        const resultArray = val.pages.map((page) => page.results);
+        return resultArray.flat();
+      }
+    });
+
   useEffect(() => {
     if (data) {
       setPokemonList(data);
@@ -37,20 +48,45 @@ const App = () => {
     setError(false);
   }, [pokemonList]);
 
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      handlePage();
+      if (hasNextPage) {
+        fetchNextPage();
+      }
+    }
+  };
+
+  useEffect(() => {
+    const debounceScroll = debounce(handleScroll, 200);
+    window.addEventListener('scroll', debounceScroll);
+    return () => {
+      window.removeEventListener('scroll', debounceScroll);
+    };
+  }, []);
+
+  const debounce = (func: () => void, delay: number) => {
+    let timeoutId: number;
+    return function () {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(func, delay);
+    };
+  };
+
   return (
     <>
       <HeroSection />
       <SearchBar
         setPokemonList={setPokemonList}
-        pokemonAmount={pokemonAmount}
+        pokemonAmount={offset}
         setPokemonAmount={setPokemonAmount}
         setError={setError}
         setLoading={setLoading}
-        setPage={setPage}
         setShowPagination={setShowPagination}
         disabledButton={disabledButton}
         setDisabledButton={setDisabledButton}
         searchBarRef={searchBarRef}
+        pokemonList={pokemonList}
       />
       <Pokedex
         modal={modal}
@@ -63,7 +99,6 @@ const App = () => {
         loading={loading}
         setLoading={setLoading}
         page={page}
-        setPage={setPage}
         showPagination={showPagination}
         setShowPagination={setShowPagination}
         searchBarRef={searchBarRef}

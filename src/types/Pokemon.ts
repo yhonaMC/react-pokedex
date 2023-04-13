@@ -173,7 +173,7 @@ export interface Type {
 export type HomeButtonProps = {
   setPokemonList: (data: Pokemon[]) => void;
   setLoading: (value: boolean) => void;
-  setPage: (value: number) => void;
+
   setShowPagination: (value: boolean) => void;
   disabledButton: boolean;
   setDisabledButton: (value: boolean) => void;
@@ -189,7 +189,6 @@ export type UsePaginationProps = {
 
 export type PokedexProps = {
   setModal: (value: boolean) => void;
-
   pokemonList: Pokemon[];
   setPokemonList: (data: Pokemon[]) => void;
   pokemonAmount: number;
@@ -198,7 +197,6 @@ export type PokedexProps = {
   loading: boolean;
   setLoading: (value: boolean) => void;
   page: number;
-  setPage: (value: number) => void;
   showPagination: boolean;
   setShowPagination: (value: boolean) => void;
   disabledButton: boolean;
@@ -229,7 +227,7 @@ export type SearchBarProps = {
   setPokemonAmount: (value: number) => void;
   setError: (value: boolean) => void;
   setLoading: (value: boolean) => void;
-  setPage: (value: number) => void;
+  pokemonList: Pokemon[];
   setShowPagination: (value: boolean) => void;
   disabledButton: boolean;
   setDisabledButton: (value: boolean) => void;
@@ -239,6 +237,7 @@ export type SearchBarProps = {
 export type SearchFilterProps = {
   setPokemonList: (data: Pokemon[]) => void;
   pokemonAmount: number;
+  pokemonList: Pokemon[];
   setPokemonAmount: (value: number) => void;
   setLoading: (value: boolean) => void;
   setShowPagination: (value: boolean) => void;
