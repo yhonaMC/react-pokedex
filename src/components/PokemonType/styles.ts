@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Type = styled.button<{ color: string }>`
   background: ${(props) => props.color};
@@ -9,7 +9,7 @@ export const Type = styled.button<{ color: string }>`
   border-radius: 0.5rem;
   flex-shrink: 0;
 
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 1rem;
   line-height: 150%;
   font-weight: 400;

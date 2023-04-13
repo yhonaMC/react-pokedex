@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.form`
   grid-area: SearchField;
@@ -24,7 +24,7 @@ export const InputText = styled.input`
   border: 0.13rem solid #2f5aff;
   border-radius: 0.5rem 0 0 0.5rem;
   padding: 1rem;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 1rem;
   line-height: 150%;
   font-weight: 400;

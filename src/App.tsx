@@ -2,14 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { SearchBar } from './components/SearchBar';
 import { Pokedex } from './components/Pokedex';
-import { Footer } from './components/Layout/Footer';
-import { PokemonModal } from './components/PokemonModal';
 import { Pokemon } from './types/Pokemon';
 import { fetchPokemonList } from './api/fetchPokemonList';
+import { useQuery } from 'react-query';
 
 const App = () => {
   const [modal, setModal] = useState(false);
-  const [pokemonData, setPokemonData] = useState<Pokemon>();
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [pokemonAmount, setPokemonAmount] = useState(9);
   const [error, setError] = useState(false);
@@ -18,14 +16,14 @@ const App = () => {
   const [showPagination, setShowPagination] = useState(true);
   const [disabledButton, setDisabledButton] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
-
+  const { data, isLoading } = useQuery('pokemonList', () =>
+    fetchPokemonList(1)
+  );
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      setPokemonList(await fetchPokemonList(1));
-      setLoading(false);
-    })();
-  }, []);
+    if (data) {
+      setPokemonList(data);
+    }
+  }, [data]);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -41,7 +39,7 @@ const App = () => {
 
   return (
     <>
-      <HeroSection setModal={setModal} setPokemonData={setPokemonData} />
+      <HeroSection />
       <SearchBar
         setPokemonList={setPokemonList}
         pokemonAmount={pokemonAmount}
@@ -55,8 +53,8 @@ const App = () => {
         searchBarRef={searchBarRef}
       />
       <Pokedex
+        modal={modal}
         setModal={setModal}
-        setPokemonData={setPokemonData}
         pokemonList={pokemonList}
         setPokemonList={setPokemonList}
         pokemonAmount={pokemonAmount}
@@ -71,10 +69,6 @@ const App = () => {
         searchBarRef={searchBarRef}
         disabledButton={disabledButton}
       />
-      <Footer />
-      {pokemonData && modal && (
-        <PokemonModal setModal={setModal} pokemonData={pokemonData} />
-      )}
     </>
   );
 };

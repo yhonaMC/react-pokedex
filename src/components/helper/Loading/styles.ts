@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 50vh;
@@ -19,7 +19,7 @@ export const Loading = styled.div`
     transform-origin: 40px 40px;
   }
   .lds-roller div:after {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     width: 7px;

@@ -1,46 +1,44 @@
-import * as C from "./styles";
-import { SearchFilter } from "../SearchFilter";
-import { SearchField } from "../SearchField";
-import { Pokemon } from "../../types/Pokemon";
-import { HomeButton } from "../HomeButton";
+import * as C from './styles';
+import { SearchFilter } from '../SearchFilter';
+import { SearchField } from '../SearchField';
+import { SearchBarProps } from '../../types/Pokemon';
+import { HomeButton } from '../HomeButton';
 
-type SearchBarProps = {
-  setPokemonList: (data: Pokemon[]) => void;
-  pokemonAmount: number;
-  setPokemonAmount: (value: number) => void;
-  setError: (value: boolean) => void;
-  setLoading: (value: boolean) => void;
-  setPage: (value: number) => void;
-  setShowPagination: (value: boolean) => void;
-  disabledButton: boolean;
-  setDisabledButton: (value: boolean) => void;
-  searchBarRef: React.MutableRefObject<HTMLDivElement>;
-};
-
-export const SearchBar = (props: SearchBarProps) => {
+export const SearchBar = ({
+  setPokemonList,
+  setLoading,
+  setPage,
+  setShowPagination,
+  disabledButton,
+  setDisabledButton,
+  searchBarRef,
+  pokemonAmount,
+  setPokemonAmount,
+  setError
+}: SearchBarProps) => {
   return (
-    <div className="main-container" ref={props.searchBarRef}>
+    <div className="main-container" ref={searchBarRef}>
       <C.Container>
         <HomeButton
-          setPokemonList={props.setPokemonList}
-          setLoading={props.setLoading}
-          setPage={props.setPage}
-          setShowPagination={props.setShowPagination}
-          disabledButton={props.disabledButton}
-          setDisabledButton={props.setDisabledButton}
+          setPokemonList={setPokemonList}
+          setLoading={setLoading}
+          setPage={setPage}
+          setShowPagination={setShowPagination}
+          disabledButton={disabledButton}
+          setDisabledButton={setDisabledButton}
         />
         <SearchFilter
-          setPokemonList={props.setPokemonList}
-          pokemonAmount={props.pokemonAmount}
-          setPokemonAmount={props.setPokemonAmount}
-          setLoading={props.setLoading}
-          setShowPagination={props.setShowPagination}
-          setDisabledButton={props.setDisabledButton}
+          setPokemonList={setPokemonList}
+          pokemonAmount={pokemonAmount}
+          setPokemonAmount={setPokemonAmount}
+          setLoading={setLoading}
+          setShowPagination={setShowPagination}
+          setDisabledButton={setDisabledButton}
         />
         <SearchField
-          setPokemonList={props.setPokemonList}
-          setError={props.setError}
-          setLoading={props.setLoading}
+          setPokemonList={setPokemonList}
+          setError={setError}
+          setLoading={setLoading}
         />
       </C.Container>
     </div>

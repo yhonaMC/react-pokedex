@@ -1,4 +1,5 @@
-import { fetchPokemon } from "./fetchPokemon";
+import { fetchPokemon } from './fetchPokemon';
+import axios from 'axios';
 
 type Props = {
   pokemon: { name: string };
@@ -6,13 +7,14 @@ type Props = {
 
 export const fetchPokemonByType = async (type: string, pokemonAmount = 9) => {
   const URL = `https://pokeapi.co/api/v2/type/${type}`;
-
-  const response = await fetch(URL);
-  const data = await response.json();
+  const { data } = await axios.get(URL);
 
   const promises = data.pokemon
     .filter((item: Props, index: number) => index + 1 <= pokemonAmount && item)
-    .map(async (item: Props) => (await fetchPokemon(item.pokemon.name)).data);
+    .map(async (item: { pokemon: { name: string } }) => {
+      const res = await fetchPokemon(item.pokemon.name);
+      return res;
+    });
 
   const pokemonList = Promise.all(promises);
 

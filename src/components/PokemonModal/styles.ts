@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: ${() => (window.innerHeight < 650 ? "flex-start" : "center")};
+  align-items: ${() => (window.innerHeight < 650 ? 'flex-start' : 'center')};
 
   overflow-y: scroll;
 
@@ -51,7 +51,7 @@ export const Modal = styled.div`
   opacity: 0;
   transform: scale(0.8);
   animation: ${modal} 0.4s forwards;
-  margin: ${() => (window.innerHeight < 650 ? "12.87rem 1rem 7rem" : "0")};
+  margin: ${() => (window.innerHeight < 650 ? '12.87rem 1rem 7rem' : '0')};
 
   @media (max-width: 62.5rem) {
     width: 100%;
@@ -71,7 +71,7 @@ export const CardOverlay = styled.div<{ color: string }>`
   z-index: -1;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 12.5rem;
     height: 12.5rem;
@@ -185,7 +185,7 @@ export const Divider = styled.div`
 
   &::before,
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 1px;
     height: 7.75rem;
@@ -287,13 +287,13 @@ const progressBar = keyframes`
 
 export const ProgressBarFill = styled.div<{ base_stat: number }>`
   width: ${(props) =>
-    props.base_stat >= 100 ? "100%" : `${props.base_stat}%`};
-  background: ${(props) => (props.base_stat >= 50 ? "#1CD80E" : "#FF364E")};
+    props.base_stat >= 100 ? '100%' : `${props.base_stat}%`};
+  background: ${(props) => (props.base_stat >= 50 ? '#1CD80E' : '#FF364E')};
   box-shadow: 0 0 0.75rem 0.25rem
     ${(props) =>
       props.base_stat >= 50
-        ? "rgba(28, 216, 14, 0.25)"
-        : "rgba(255, 54, 78, 0.25)"};
+        ? 'rgba(28, 216, 14, 0.25)'
+        : 'rgba(255, 54, 78, 0.25)'};
   height: 0.5rem;
   border-radius: 0.25rem;
   transform: translate3d(-100%, 0, 0);
@@ -304,7 +304,7 @@ export const CloseButton = styled.button<{ mobile: boolean }>`
   background: none;
   position: absolute;
   top: 1.5rem;
-  right: ${(props) => (props.mobile ? "1rem " : "1.5rem")};
+  right: ${(props) => (props.mobile ? '1rem ' : '1.5rem')};
 
   svg {
     width: 3rem;

@@ -4,20 +4,18 @@ import { ReactComponent as DividerIcon } from '../../assets/divider-fire.svg';
 import { Waves } from '../Waves';
 import { PokemonType } from '../PokemonType';
 import { Header } from '../Layout/Header';
-import { fetchPokemon } from '../../api/fetchPokemon';
 import imgSrc from '../../assets/img-charizard-min.png';
-import { Pokemon } from '../../types/Pokemon';
+import { PokemonModal } from '../PokemonModal';
+import { usePokemonData } from '../../hooks/usePokemonData';
 
-type HeroSectionProps = {
-  setModal: (value: boolean) => void;
-  setPokemonData: (data: Pokemon) => void;
-};
+export const HeroSection = () => {
+  const { open, pokemonData, setOpen } = usePokemonData(
+    'pokemons-Her-Section',
+    'charizard'
+  );
 
-export const HeroSection = ({ setModal, setPokemonData }: HeroSectionProps) => {
-  const handleClick = async () => {
-    const { data } = await fetchPokemon('charizard');
-    setPokemonData(data);
-    setModal(true);
+  const handleClick = () => {
+    setOpen(true);
   };
 
   return (
@@ -33,15 +31,14 @@ export const HeroSection = ({ setModal, setPokemonData }: HeroSectionProps) => {
             </C.CharizardTypes>
             <C.CharizardName>Charizard</C.CharizardName>
             <C.CharizardDescription>
-              Charizard se assemelha a um grande tradicional dragão europeu.
-              Apesar da semelhança, Charizard é explicitamente um Pokémon dos
-              tipos Fogo e Voador, e não um tipo Dragão, exceto em sua forma
-              "Mega Charizard X"; No entanto, ele pode aprender ataques do tipo
-              Dragão.
+              Charizard se asemeja a un gran dragón europeo tradicional. A pesar
+              de la similitud, Charizard es explícitamente un Pokémon de tipo
+              Fuego y Volador, y no de tipo Dragón, excepto en su forma "Mega
+              Charizard X"; Sin embargo, puede aprender ataques de tipo Dragón.
             </C.CharizardDescription>
             <C.MoreDetailsButton onClick={handleClick}>
               <BoltIcon />
-              Mais Detalhes
+              Mas Detalles
             </C.MoreDetailsButton>
           </C.CharizardData>
 
@@ -61,6 +58,9 @@ export const HeroSection = ({ setModal, setPokemonData }: HeroSectionProps) => {
       </div>
 
       <Waves />
+      {open && pokemonData && (
+        <PokemonModal setModal={setOpen} pokemonData={pokemonData} />
+      )}
     </C.Container>
   );
 };

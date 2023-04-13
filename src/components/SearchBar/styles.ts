@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas:
-    "HomeButton ."
-    "SearchFilter SearchField";
+    'HomeButton .'
+    'SearchFilter SearchField';
   align-items: end;
   row-gap: 1.5rem;
   column-gap: 2rem;
@@ -17,17 +17,17 @@ export const Container = styled.div`
     grid-template-columns: 1fr auto;
 
     grid-template-areas:
-      "SearchFilter HomeButton"
-      "SearchField SearchField";
+      'SearchFilter HomeButton'
+      'SearchField SearchField';
   }
 
   @media (max-width: 42.5rem) {
     grid-template-columns: 1fr;
 
     grid-template-areas:
-      "HomeButton HomeButton"
-      "SearchFilter SearchFilter"
-      "SearchField SearchField";
+      'HomeButton HomeButton'
+      'SearchFilter SearchFilter'
+      'SearchField SearchField';
   }
 
   @media (max-width: 31.25rem) {

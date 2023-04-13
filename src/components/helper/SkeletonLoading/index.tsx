@@ -1,10 +1,6 @@
-import { useState } from "react";
-import * as C from "./styles";
-
-type SkeletonLoadingProps = {
-  src: string;
-  alt: string;
-};
+import { useState } from 'react';
+import * as C from './styles';
+import { SkeletonLoadingProps } from '../../../types/Pokemon';
 
 export const SkeletonLoading = ({ src, alt }: SkeletonLoadingProps) => {
   const [skeleton, setSkeleton] = useState(true);

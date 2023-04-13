@@ -1,43 +1,40 @@
-import React from "react";
-import * as C from "./styles";
-import { PokemonType } from "../PokemonType";
-import { ReactComponent as WeightIcon } from "../../assets/icon-weight.svg";
-import { ReactComponent as RulerIcon } from "../../assets/icon-ruler.svg";
-import { ReactComponent as DividerIcon } from "../../assets/divider-pokeball.svg";
-import { ReactComponent as CloseIcon } from "../../assets/icon-close.svg";
-import { Pokemon } from "../../types/Pokemon";
-import { pokemonTypes } from "../../pokemonTypes";
-import { SkeletonLoading } from "../helper/SkeletonLoading";
-import { useMedia } from "../../hooks/useMedia";
-
-type PokemonModalProps = {
-  setModal: (value: boolean) => void;
-  pokemonData: Pokemon;
-};
+import React from 'react';
+import * as C from './styles';
+import { PokemonType } from '../PokemonType';
+import { ReactComponent as WeightIcon } from '../../assets/icon-weight.svg';
+import { ReactComponent as RulerIcon } from '../../assets/icon-ruler.svg';
+import { ReactComponent as DividerIcon } from '../../assets/divider-pokeball.svg';
+import { ReactComponent as CloseIcon } from '../../assets/icon-close.svg';
+import { PokemonModalProps } from '../../types/Pokemon';
+import { pokemonTypes } from '../../pokemonTypes';
+import { SkeletonLoading } from '../helper/SkeletonLoading';
+import { useMedia } from '../../hooks/useMedia';
 
 export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
-  const mobile = useMedia("(max-width: 980px)");
+  const mobile = useMedia('(max-width: 980px)');
 
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonData.id}.png`;
-
+  if (!pokemonData) {
+    return null;
+  }
   const [{ color }] = pokemonTypes.filter(
     (type) => pokemonData.types[0].type.name.indexOf(type.name) !== -1
   );
 
   const formatStatName = (statName: string) => {
     switch (statName) {
-      case "hp":
-        return "HP";
-      case "attack":
-        return "Attack";
-      case "defense":
-        return "Defense";
-      case "special-attack":
-        return "Sp. Atk";
-      case "special-defense":
-        return "Sp. Def";
-      case "speed":
-        return "Speed";
+      case 'hp':
+        return 'HP';
+      case 'attack':
+        return 'Attack';
+      case 'defense':
+        return 'Defense';
+      case 'special-attack':
+        return 'Sp. Atk';
+      case 'special-defense':
+        return 'Sp. Def';
+      case 'speed':
+        return 'Speed';
     }
   };
 

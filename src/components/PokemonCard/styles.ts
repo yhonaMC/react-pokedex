@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const fadeDown = keyframes`
   from {
@@ -42,7 +42,7 @@ export const CardOverlay = styled.div<{ color: string }>`
   -moz-transform: translate3d(0, 0, 0);
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 12.5rem;
     height: 12.5rem;

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div<{ skeleton: boolean }>`
   display: grid;
@@ -7,7 +7,7 @@ export const Container = styled.div<{ skeleton: boolean }>`
     min-width: 16rem;
     min-height: 16rem;
     grid-area: 1/1;
-    opacity: ${({ skeleton }) => (skeleton ? "0" : "1")};
+    opacity: ${({ skeleton }) => (skeleton ? '0' : '1')};
     transition: 0.2s;
   }
 `;
