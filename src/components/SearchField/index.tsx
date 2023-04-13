@@ -11,7 +11,11 @@ type SearchFieldProps = {
   setLoading: (value: boolean) => void;
 };
 
-export const SearchField = (props: SearchFieldProps) => {
+export const SearchField = ({
+  setPokemonList,
+  setError,
+  setLoading
+}: SearchFieldProps) => {
   const [inputValue, setInputValue] = useState('');
   const { data } = useQuery(['pokemons', inputValue.toLowerCase()], () =>
     fetchPokemon(inputValue.toLowerCase())
@@ -19,9 +23,9 @@ export const SearchField = (props: SearchFieldProps) => {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    props.setLoading(true);
-    data ? props.setPokemonList([data]) : props.setError(true);
-    props.setLoading(false);
+    setLoading(true);
+    data ? setPokemonList([data]) : setError(true);
+    setLoading(false);
     setInputValue('');
   };
 
