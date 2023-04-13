@@ -19,6 +19,7 @@ Este Pokédex fue hecho en ReactJS + TypeScript. Inicialmente, el modelo de la a
 - MUI 
 - API: PokéApi
 - React-query
+- axios
 
 ## 📌 Inicializacion del proyecto 
  - Correr el comando npm install para instalar node modules
