@@ -17,9 +17,10 @@ export const SearchField = ({
   setLoading
 }: SearchFieldProps) => {
   const [inputValue, setInputValue] = useState('');
-  const { data } = useQuery(['pokemons', inputValue.toLowerCase()], () =>
+  const { data } = useQuery(['pokemons', inputValue.toLocaleLowerCase()], () =>
     fetchPokemon(inputValue.toLowerCase())
   );
+  console.log('🚀 ~ file: index.tsx:23 ~ data:', data);
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
